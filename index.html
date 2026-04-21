@@ -777,11 +777,68 @@ footer {
   letter-spacing: 0.1em;
   color: var(--text-dim);
 }
+/* NAV IMAGE (Profile / Brand Image) */
+.nav-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  position: relative;
+}
 
+.nav-image img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: all 0.35s ease;
+  box-shadow: 0 0 0 0 rgba(79,142,247,0);
+}
+
+/* Glow + hover effect */
+.nav-image:hover img {
+  transform: scale(1.08);
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--glow), 0 0 0 1px rgba(79,142,247,0.3);
+}
+
+/* Subtle pulse animation (matches your UI style) */
+.nav-image::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid rgba(79,142,247,0.25);
+  animation: navPulse 2.5s infinite;
+  opacity: 0.6;
+}
+
+@keyframes navPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 /* ANIMATIONS */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
-
+@media (max-width: 768px) {
+  .nav-image {
+    display: flex;
+    margin-left: auto;
+    margin-right: 1rem;
+  }
+}
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   nav { padding: 1.2rem 2rem; }
@@ -846,6 +903,12 @@ footer {
 <!-- NAV -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">MU<span>.</span></a>
+
+  <!-- New Image Link -->
+  <a href="#hero" class="nav-image">
+    <img src="pic.png" alt="Profile" />
+  </a>
+
   <ul class="nav-links" id="navLinks">
     <li><a href="#education">Education</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -853,6 +916,7 @@ footer {
     <li><a href="#personal">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+
   <a href="#contact" class="nav-cta">Let's Talk</a>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
